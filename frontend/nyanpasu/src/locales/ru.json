@@ -246,11 +246,16 @@
   "Subscription Expires In": "Истекает {{time}}",
   "Subscription Updated At": "Обновлено в {{time}}",
   "Choose file to import or leave it blank to create new one": "Выберите файл для импорта или оставьте пустым, чтобы создать новый.",
-  "updater": {
-    "title": "Доступна новая версия",
-    "close": "Игнорировать",
-    "update": "Обновить сейчас",
-    "go": "Посмотреть на GitHub"
+  "kernel": {
+    "state": {
+      "idle": "Бездействие",
+      "downloading": "Загрузка",
+      "waiting_for_merge": "Объединение частей",
+      "merging": "Объединение",
+      "failed": "Загрузка не удалась",
+      "finished": "Завершено",
+      "waiting": "Ожидание"
+    }
   },
   "not_installed": "Не установлено",
   "stopped": "Остановлено",

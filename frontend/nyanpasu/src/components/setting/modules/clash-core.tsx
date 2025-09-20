@@ -42,10 +42,13 @@ export const getImage = (core: ClashCore) => {
 }
 
 const calcProgress = (data?: InspectUpdater) => {
-  return (
-    (Number(data?.downloader?.downloaded) / Number(data?.downloader?.total)) *
-    100
-  )
+  const downloaded = Number(data?.downloader?.downloaded) || 0
+  const total = Number(data?.downloader?.total) || 0
+
+  if (total === 0) return 0
+
+  const progress = (downloaded / total) * 100
+  return isNaN(progress) ? 0 : Math.min(progress, 100)
 }
 
 const CardProgress = ({
@@ -55,13 +58,18 @@ const CardProgress = ({
   data?: InspectUpdater
   show?: boolean
 }) => {
+  const { t } = useTranslation()
+
   const parsedState = () => {
-    if (data?.downloader?.state) {
+    if (!data?.downloader?.state) {
       return 'waiting'
-    } else if (isObject(data?.downloader.state)) {
-      return data?.downloader.state.failed
+    } else if (
+      isObject(data?.downloader.state) &&
+      (data?.downloader.state as any).failed
+    ) {
+      return 'failed'
     } else {
-      return data?.downloader.state
+      return data?.downloader.state || 'waiting'
     }
   }
 
@@ -98,7 +106,9 @@ const CardProgress = ({
         })}
       />
 
-      <div className="truncate capitalize">{parsedState()}</div>
+      <div className="truncate capitalize">
+        {t(`kernel.state.${parsedState()}`)}
+      </div>
 
       <div className="truncate">
         {calcProgress(data).toFixed(0)}%{''}

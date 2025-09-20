@@ -246,11 +246,16 @@
   "Subscription Expires In": "Expires {{time}}",
   "Subscription Updated At": "Updated at {{time}}",
   "Choose file to import or leave it blank to create new one": "Choose a file to import or leave it blank to create new one.",
-  "updater": {
-    "title": "New version available",
-    "close": "Ignore",
-    "update": "Update Now",
-    "go": "View on GitHub"
+  "kernel": {
+    "state": {
+      "idle": "Idle",
+      "downloading": "Downloading",
+      "waiting_for_merge": "Merging Chunks",
+      "merging": "Merging",
+      "failed": "Download Failed",
+      "finished": "Finished",
+      "waiting": "Waiting"
+    }
   },
   "not_installed": "Not Installed",
   "stopped": "Stopped",
